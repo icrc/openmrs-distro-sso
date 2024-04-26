@@ -8,9 +8,10 @@ RUN mkdir -p /openmrs/distribution/openmrs_core/
 # Copy build files
 COPY pom.xml ./
 COPY distro.properties ./
+COPY module-create-users ./module-create-users
 
 # Build the distro, but only deploy from the amd64 build
-RUN --mount=type=cache,target=/root/.m2 mvn -U install
+RUN --mount=type=cache,target=/root/.m2 mvn install
 
 RUN cp /openmrs_distro/target/sdk-distro/web/openmrs.war /openmrs/distribution/openmrs_core/
 
@@ -32,6 +33,9 @@ COPY --from=dev /openmrs/distribution/openmrs_modules /openmrs/distribution/open
 COPY --from=dev /openmrs/distribution/openmrs_owas /openmrs/distribution/openmrs_owas
 COPY --from=dev /openmrs/distribution/openmrs_config /openmrs/distribution/openmrs_config
 COPY custom_configuration /openmrs/distribution/openmrs_config
+COPY logging.sysout.properties /usr/local/tomcat/conf/logging.properties
+#COPY server.xml /usr/local/tomcat/conf/server.xml
+COPY log4j2.xml /openmrs/distribution/
 
 COPY --chmod=0755 ./startup-oauth2.sh /openmrs/
 CMD ["/openmrs/startup-oauth2.sh"]

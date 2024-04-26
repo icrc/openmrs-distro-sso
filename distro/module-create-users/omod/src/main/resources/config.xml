@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module configVersion="1.2">
+
+	<id>${project.parent.artifactId}</id>
+	<name>${project.parent.name}</name>
+	<version>${project.parent.version}</version>
+	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
+	<author>${project.parent.organization.name}</author>
+	<description>${project.parent.description}</description>
+	<require_version>${openmrsPlatformVersion}</require_version>
+
+	<activator>org.openmrs.module.createusers.CreateUsersActivator</activator>
+	<require_module version="${appointments.version}">org.openmrs.module.appointments
+	</require_module>
+	<require_module version="${initializer.version}">org.openmrs.module.initializer
+	</require_module>
+</module>

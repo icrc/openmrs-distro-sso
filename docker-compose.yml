@@ -82,11 +82,6 @@ services:
       KC_HOSTNAME_STRICT: false
       KC_HTTP_ENABLED: true
       KC_HOSTNAME: localhost
-#    volumes:
-#      - ./keycloak/custom-kc.sh:/opt/keycloak/bin/custom-kc.sh
-#      - ./keycloak/initialize-my-realm-and-add-users.sh:/opt/keycloak/bin/initialize-my-realm-and-add-users.sh
-#      - ./keycloak/users.csv:/opt/keycloak/bin/users.csv
-#    entrypoint: ["sh","/opt/keycloak/bin/custom-kc.sh" ]
     command: ["start-dev"]
 
 volumes:

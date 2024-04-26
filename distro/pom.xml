@@ -7,10 +7,14 @@
     <artifactId>referenceapplication-distro</artifactId>
     <version>3.0.0-SNAPSHOT</version>
   </parent>
-<!--See https://github.com/openmrs/openmrs-distro-referenceapplication/blob/main/distro/pom.xml-->
+  <!--See https://github.com/openmrs/openmrs-distro-referenceapplication/blob/main/distro/pom.xml-->
   <artifactId>ssoapplication-distro</artifactId>
   <name>OpenMRS distro</name>
   <packaging>pom</packaging>
+
+  <modules>
+    <module>module-create-users</module>
+  </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,23 +26,29 @@
 
     <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
     <oauth2login.version>1.4.0</oauth2login.version>
+    <create-users.version>1.0.0-SNAPSHOT</create-users.version>
+    <openmrsAtomfeed.version>2.6.3</openmrsAtomfeed.version>
   </properties>
 
   <dependencies>
+
     <dependency>
-      <groupId>org.openmrs.web</groupId>
-      <artifactId>openmrs-webapp</artifactId>
-      <version>${openmrs.version}</version>
-      <type>war</type>
+      <groupId>org.ict4h.openmrs</groupId>
+      <artifactId>openmrs-atomfeed-omod</artifactId>
+      <version>${openmrsAtomfeed.version}</version>
       <scope>provided</scope>
     </dependency>
-
-    <!--    ICRC -->
     <dependency>
       <groupId>org.openmrs.distro</groupId>
       <artifactId>referenceapplication-distro</artifactId>
       <version>3.0.0-SNAPSHOT</version>
       <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>create-users-omod</artifactId>
+      <version>${create-users.version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openmrs.module</groupId>
@@ -92,7 +102,7 @@
         <executions>
           <execution>
             <id>copy-openmrs-configuration</id>
-            <phase>NONE</phase>
+            <phase>none</phase>
           </execution>
         </executions>
       </plugin>
@@ -100,13 +110,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
         <executions>
           <execution>
             <id>package-distro-artifact</id>
-            <phase>NONE</phase>
+            <phase>none</phase>
             <configuration>
             </configuration>
           </execution>

@@ -19,7 +19,12 @@ EOF
 
 cat > "$OMRS_HOME"/data/openmrs-runtime.properties << EOF
 hibernate.cache.use_query_cache=true
+initializer.logging.enabled=false
 EOF
 
+
+cp /openmrs/distribution/log4j2.xml "$OMRS_HOME"/data/
+
+export CATALINA_OUT=/dev/stdout
 /openmrs/startup.sh
 
