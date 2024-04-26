@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+  <changeSet id="create-clerk-outpatient-clinic" author="fdeniger">
+    <sql>
+      SELECT @PERSON_FIRST_NAME := 'Clerk';
+      SELECT @PERSON_FAMILIY_NAME := 'Outpatient';
+      SELECT @PERSON_GENDER := 'M';
+      SELECT @USERNAME := 'clerk.outpatient';
+      SELECT @ROLE := 'Organizational: Registration Clerk';
+      SELECT @LOCATION := 'Outpatient Clinic';
+      SELECT @ATTRIBUTE_TYPE_ID:= provider_attribute_type_id from provider_attribute_type where name= 'Available for appointments';
+      SELECT @UUID := uuid();
+      SELECT @TITLE := '';
+      SELECT @NEXT_PERSON_ID := null;
+      SELECT @NEXT_PROVIDER_ID := null;
+      SELECT @NEXT_ATTRIBUTE_PROVIDER_ID := null;
+      SELECT @NEXT_USER_ID := null;
+      SELECT @NEXT_PERSON_ID := (MAX(person_id) + 1) from person;
+      SELECT @NEXT_PROVIDER_ID := (MAX(provider_id) + 1) from provider;
+      SELECT @NEXT_ATTRIBUTE_PROVIDER_ID := (MAX(provider_attribute_id) + 1) from provider_attribute;
+      SELECT @NEXT_USER_ID := (SELECT case when EXISTS(SELECT @OLD_USER_ID := user_id from users u where username = @USERNAME) = 0 then (SELECT (MAX(user_id) + 1)) else (SELECT @OLD_USER_ID := user_id from users u where username = @USERNAME) end from users);
+
+      INSERT INTO person (person_id, gender, dead, creator, date_created, voided, uuid) SELECT @NEXT_PERSON_ID, @PERSON_GENDER, 0, 1, NOW(), 0, uuid() FROM DUAL WHERE EXISTS(SELECT user_id from users u where username = @USERNAME) = 0;
+      INSERT INTO person_name (preferred, person_id, given_name, middle_name, family_name, creator, date_created, voided, uuid) SELECT 1, @NEXT_PERSON_ID, @PERSON_FIRST_NAME, '', @PERSON_FAMILIY_NAME, 1, NOW(), 0, @UUID FROM DUAL WHERE EXISTS(select user_id from users u where username = @USERNAME) = 0;
+      INSERT INTO provider(provider_id, person_id, identifier, creator, date_created, uuid) SELECT @NEXT_PROVIDER_ID, @NEXT_PERSON_ID, @USERNAME, 1, NOW(), @UUID FROM DUAL WHERE EXISTS(SELECT user_id from users u where username = @USERNAME) = 0;
+      INSERT INTO users (user_id, person_id, system_id, username, creator, date_created, retired, uuid, password, salt) VALUES (@NEXT_USER_ID, @NEXT_PERSON_ID, @USERNAME, @USERNAME, 1, NOW(), 0, @UUID, '', '') ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, system_id = @USERNAME, username = @USERNAME, creator = 1, date_created = NOW(), retired = 0, uuid = @UUID, password = '', salt = '';
+      INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'forcePassword', false) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'forcePassword', property_value = false;
+      SELECT @PROVIDER_ID := provider_id from provider where person_id =(select person_id from users where user_id=@NEXT_USER_ID);
+      SELECT @NEXT_ATTRIBUTE_PROVIDER_ID := (SELECT case when EXISTS(SELECT @OLD_ATTRIBUTE_PROVIDER_ID := provider_attribute_id from provider_attribute p where attribute_type_id = @ATTRIBUTE_TYPE_ID and provider_id= @PROVIDER_ID) = 0 then (SELECT (MAX(provider_attribute_id) + 1)) else (SELECT @OLD_ATTRIBUTE_PROVIDER_ID := provider_attribute_id from provider_attribute p where attribute_type_id = @ATTRIBUTE_TYPE_ID and provider_id= @PROVIDER_ID) end from provider_attribute);
+      INSERT INTO provider_attribute(provider_attribute_id, provider_id, attribute_type_id, value_reference, uuid, creator, date_created) values(@NEXT_ATTRIBUTE_PROVIDER_ID, @PROVIDER_ID, @ATTRIBUTE_TYPE_ID, 'true', uuid(), 1, NOW())  ON DUPLICATE KEY UPDATE provider_attribute_id = @NEXT_ATTRIBUTE_PROVIDER_ID, provider_id = @PROVIDER_ID, attribute_type_id = @ATTRIBUTE_TYPE_ID, value_reference = 'true', uuid = uuid(), creator = 1, date_created = NOW();
+      INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'lockoutTimestamp', '') ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'lockoutTimestamp', property_value = '';
+      INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'loginAttempts', 0) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'loginAttempts', property_value = 0;
+      DELETE FROM user_role WHERE user_id = @NEXT_USER_ID;
+      INSERT INTO user_role VALUES (@NEXT_USER_ID, trim(@ROLE)) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, role = trim(@ROLE);
+      INSERT INTO datafilter_entity_basis_map (entity_identifier, entity_type, basis_identifier, basis_type, creator, date_created, uuid) VALUES (@NEXT_USER_ID, 'org.openmrs.User', (SELECT @_ID := location_id from location where name=@LOCATION), 'org.openmrs.Location', 1, NOW(), uuid()) ON DUPLICATE KEY UPDATE entity_identifier = @NEXT_USER_ID, entity_type = 'org.openmrs.User', basis_identifier = (select @_ID := location_id from location where name=@LOCATION), basis_type = 'org.openmrs.Location', creator = 1, date_created = NOW(), uuid = uuid();
+
+    </sql>
+  </changeSet>
+</databaseChangeLog>

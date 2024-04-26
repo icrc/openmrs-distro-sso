@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+
+  <!--doctor.outpatient Doctor with access to Outpatient Clinic-->
+  <include file="create-doctor-outpatient-clinic.xml" relativeToChangelogFile="true"/>
+  <!--nurse.outpatient Doctor with access to Outpatient Clinic-->
+  <include file="create-nurse-outpatient-clinic.xml" relativeToChangelogFile="true"/>
+  <!--clerk.outpatient Doctor with access to Outpatient Clinic-->
+  <include file="create-clerk-outpatient-clinic.xml" relativeToChangelogFile="true"/>
+
+  <!--doctor.mobile Mobile Clinic-->
+  <include file="create-doctor-mobile-clinic.xml" relativeToChangelogFile="true"/>
+  <!--nurse.mobile Mobile Clinic-->
+  <include file="create-nurse-mobile-clinic.xml" relativeToChangelogFile="true"/>
+  <!--clerk.mobile Mobile Clinic-->
+  <include file="create-clerk-mobile-clinic.xml" relativeToChangelogFile="true"/>
+
+  <!--doctor.outreach Community Outreach-->
+  <include file="create-doctor-community-outreach.xml" relativeToChangelogFile="true"/>
+  <!--nurse.outreach Community Outreach-->
+  <include file="create-nurse-community-outreach.xml" relativeToChangelogFile="true"/>
+  <!--clerk.outreach Community Outreach-->
+  <include file="create-clerk-community-outreach.xml" relativeToChangelogFile="true"/>
+
+
+  <!--doctor.many all 3 locations-->
+  <include file="create-doctor-many.xml" relativeToChangelogFile="true"/>
+  <!--nurse.outreach all 3 locations-->
+  <include file="create-nurse-many.xml" relativeToChangelogFile="true"/>
+  <!--clerk.outreach all 3 locations-->
+  <include file="create-clerk-many.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

@@ -1,0 +1,185 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.openmrs.distro</groupId>
+    <artifactId>referenceapplication-distro</artifactId>
+    <version>3.0.0-SNAPSHOT</version>
+  </parent>
+<!--See https://github.com/openmrs/openmrs-distro-referenceapplication/blob/main/distro/pom.xml-->
+  <artifactId>ssoapplication-distro</artifactId>
+  <name>OpenMRS distro</name>
+  <packaging>pom</packaging>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <distro.openmrsConfigDir>${project.build.directory}</distro.openmrsConfigDir>
+
+    <!--    ICRC customization: we are using 2.5 version-->
+    <openmrs.version>2.5.12-SNAPSHOT</openmrs.version>
+
+    <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
+    <oauth2login.version>1.4.0</oauth2login.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openmrs.web</groupId>
+      <artifactId>openmrs-webapp</artifactId>
+      <version>${openmrs.version}</version>
+      <type>war</type>
+      <scope>provided</scope>
+    </dependency>
+
+    <!--    ICRC -->
+    <dependency>
+      <groupId>org.openmrs.distro</groupId>
+      <artifactId>referenceapplication-distro</artifactId>
+      <version>3.0.0-SNAPSHOT</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>datafilter-omod</artifactId>
+      <version>${datafilter.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>oauth2login-omod</artifactId>
+      <version>${oauth2login.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!--download config from reference applications-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <id>copy-openmrs-config</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack-dependencies</goal>
+            </goals>
+            <configuration>
+              <excludeTransitive>true</excludeTransitive>
+              <outputDirectory>${distro.openmrsConfigDir}</outputDirectory>
+              <includeArtifactIds>referenceapplication-distro</includeArtifactIds>
+              <includeGroupIds>org.openmrs.distro</includeGroupIds>
+              <includes>
+                openmrs_config/**
+              </includes>
+              <stripClassifier>true</stripClassifier>
+              <useSubDirectoryPerArtifact>false</useSubDirectoryPerArtifact>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!--deactivate plugin-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <id>copy-openmrs-configuration</id>
+            <phase>NONE</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <!--deactivate plugin-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <skip>true</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <id>package-distro-artifact</id>
+            <phase>NONE</phase>
+            <configuration>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <repositories>
+    <repository>
+      <id>openmrs-repo</id>
+      <name>OpenMRS Nexus Repository</name>
+      <url>https://mavenrepo.openmrs.org/public</url>
+    </repository>
+    <repository>
+      <id>openmrs-repo-releases</id>
+      <name>OpenMRS Release Repository</name>
+      <url>https://mavenrepo.openmrs.org/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>openmrs-repo-snapshots</id>
+      <name>OpenMRS Snapshots Repository</name>
+      <url>https://mavenrepo.openmrs.org/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>mks-nexus-public</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-public/</url>
+    </repository>
+    <repository>
+      <id>mks-nexus-snapshots</id>
+      <url>https://nexus.mekomsolutions.net/repository/maven-snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>interval:10080</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>openmrs-repo</id>
+      <name>OpenMRS Public Repository</name>
+      <url>https://mavenrepo.openmrs.org/public</url>
+    </pluginRepository>
+    <pluginRepository>
+      <id>openmrs-repo-snapshots</id>
+      <name>OpenMRS Public Repository</name>
+      <url>https://mavenrepo.openmrs.org/snapshots</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+</project>
