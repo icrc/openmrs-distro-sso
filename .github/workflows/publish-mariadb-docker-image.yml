@@ -1,8 +1,5 @@
 name: Publish MariaDB docker image with openmrs dump
 
-on:
-  push:
-
 jobs:
   build:
 
