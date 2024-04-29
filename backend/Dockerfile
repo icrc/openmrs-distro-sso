@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ### Dev Stage
-FROM maven:3.8-amazoncorretto-8 as dev
+FROM maven:3.8-amazoncorretto-8 AS dev
 WORKDIR /openmrs_distro
 RUN mkdir -p /openmrs/distribution/openmrs_core/
 
@@ -32,7 +32,7 @@ COPY --from=dev /openmrs/distribution/openmrs-distro.properties /openmrs/distrib
 COPY --from=dev /openmrs/distribution/openmrs_modules /openmrs/distribution/openmrs_modules
 COPY --from=dev /openmrs/distribution/openmrs_owas /openmrs/distribution/openmrs_owas
 COPY --from=dev /openmrs/distribution/openmrs_config /openmrs/distribution/openmrs_config
-COPY custom_configuration /openmrs/distribution/openmrs_config
+COPY openmrs_custom_config /openmrs/distribution/openmrs_config
 COPY logging.sysout.properties /usr/local/tomcat/conf/logging.properties
 #COPY server.xml /usr/local/tomcat/conf/server.xml
 COPY log4j2.xml /openmrs/distribution/
