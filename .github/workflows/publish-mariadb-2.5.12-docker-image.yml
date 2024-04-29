@@ -1,4 +1,4 @@
-name: Publish MariaDB docker image with openmrs dump
+name: Publish MariaDB For OpenMRS 2.5.12 docker image
 
 on:
   workflow_dispatch:
