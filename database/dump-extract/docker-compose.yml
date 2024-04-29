@@ -3,7 +3,7 @@ version: "3.7"
 services:
 
   backend-core:
-    image: openmrs/openmrs-core:2.5.12
+    image: openmrs/openmrs-core:2.6.4
     restart: "unless-stopped"
     ports:
       - "8081:8080"
