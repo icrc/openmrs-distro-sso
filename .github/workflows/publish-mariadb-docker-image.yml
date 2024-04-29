@@ -5,7 +5,7 @@ on:
 # See https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: mariadb-10:2.5.12
+  IMAGE_NAME: mariadb-10
 jobs:
   build:
 
@@ -36,5 +36,5 @@ jobs:
         with:
           context: ./database
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: 2.5.12
           labels: ${{ steps.meta.outputs.labels }}
