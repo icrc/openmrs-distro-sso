@@ -11,15 +11,14 @@ services:
       - "80:80"
 
   frontend:
-    image: openmrs/openmrs-reference-application-3-frontend:${TAG:-qa}
+    build:
+      context: frontend
     restart: "unless-stopped"
     environment:
       SPA_PATH: /openmrs/spa
       API_URL: /openmrs
       SPA_CONFIG_URLS: /openmrs/spa/config-core_demo.json,/openmrs/spa/oauth2.json
       SPA_DEFAULT_LOCALE:
-    volumes:
-      - ./frontend/oauth2.json:/usr/share/nginx/html/oauth2.json
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost/"]
       timeout: 5s
@@ -28,15 +27,15 @@ services:
 
   backend:
     build:
-      context: distro
+      context: backend
     restart: "unless-stopped"
     depends_on:
-      - db
+      - database
     environment:
       OMRS_CONFIG_MODULE_WEB_ADMIN: "true"
       OMRS_CONFIG_AUTO_UPDATE_DATABASE: "true"
       OMRS_CONFIG_CREATE_TABLES: "true"
-      OMRS_CONFIG_CONNECTION_SERVER: db
+      OMRS_CONFIG_CONNECTION_SERVER: database
       OMRS_CONFIG_CONNECTION_DATABASE: openmrs
       OMRS_CONFIG_CONNECTION_USERNAME: ${OMRS_DB_USER:-openmrs}
       OMRS_CONFIG_CONNECTION_PASSWORD: ${OMRS_DB_PASSWORD}
@@ -50,8 +49,9 @@ services:
       - openmrs-data:/openmrs/data
 
   # MariaDB
-  db:
-    image: mariadb-openmrs
+  database:
+    build:
+      context: database
     ports:
       - "3306:3306"
     restart: "unless-stopped"

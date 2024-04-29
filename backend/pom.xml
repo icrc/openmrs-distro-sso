@@ -22,7 +22,7 @@
     <distro.openmrsConfigDir>${project.build.directory}</distro.openmrsConfigDir>
 
     <!--    ICRC customization: we are using 2.5 version-->
-    <openmrs.version>2.5.12-SNAPSHOT</openmrs.version>
+    <openmrs.version>2.5.13-SNAPSHOT</openmrs.version>
 
     <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
     <oauth2login.version>1.4.0</oauth2login.version>
