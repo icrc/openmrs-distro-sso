@@ -10,6 +10,16 @@ reference openmrs distro datafilter, oauth2 module using Keycloak with default u
    `docker compose -f docker-compose.yml up -d --build`
 4. to build images locally and start: `docker compose up -d --build`
 
+# Login to ghrc
+
+
+```bash
+export CR_PAT=YOUR_TOKEN
+echo $CR_PAT | docker login ghcr.io -u <yourAccount> --password-stdin
+```
+
+See https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
+
 # Useful command
 
 - `docker compose down -v` to restart all from scratch
