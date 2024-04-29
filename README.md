@@ -12,7 +12,7 @@ reference openmrs distro datafilter, oauth2 module using Keycloak with default u
 
 # Useful command
 
-- `docker compose down -v` to restart all from scratch`
+- `docker compose down -v` to restart all from scratch
 - `docker compose up -d` to start quickly
 
 # Other Resources

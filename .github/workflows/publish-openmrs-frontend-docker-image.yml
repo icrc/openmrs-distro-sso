@@ -8,7 +8,7 @@ on:
       - frontend/*
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: openmrs-frontend-2.5.13
+  IMAGE_NAME: openmrs-frontend-qa
   IMAGE_TAG: latest
   CONTEXT: ./frontend
 jobs:
