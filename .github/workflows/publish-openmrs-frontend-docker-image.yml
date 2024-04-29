@@ -1,4 +1,4 @@
-name: Publish MariaDB docker image with openmrs dump
+name: Publish OpenMRS Frontend docker image
 
 on:
   push:
@@ -39,7 +39,7 @@ jobs:
           tags: |
             type=raw,value=${{ env.IMAGE_TAG }}
 
-      - name: Build and push Docker image
+      - name: Build and push Docker image  ${{ env.IMAGE_NAME }}
         uses: docker/build-push-action@v5
         with:
           context: ${{ env.CONTEXT }}

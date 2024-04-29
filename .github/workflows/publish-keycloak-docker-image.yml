@@ -1,4 +1,4 @@
-name: Publish MariaDB docker image with openmrs dump
+name: Publish Keycloak docker image with automatic users creation
 
 on:
   push:

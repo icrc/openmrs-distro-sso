@@ -1,4 +1,4 @@
-name: Publish MariaDB docker image with openmrs dump
+name: Publish OpenMRS Backend docker image
 
 on:
   push:
