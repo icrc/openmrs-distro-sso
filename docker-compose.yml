@@ -51,7 +51,7 @@ services:
 
   # MariaDB
   db:
-    image: mariadb:10.11.7
+    image: mariadb-openmrs
     ports:
       - "3306:3306"
     restart: "unless-stopped"
