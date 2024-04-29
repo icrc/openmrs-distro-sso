@@ -33,5 +33,5 @@ jobs:
           context: ./database
           push: true
 #          tags: "${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}"
-          tags: "${{ env.IMAGE_NAME }}:main"
+          tags: "${{ env.IMAGE_NAME }}"
           labels: ${{ steps.meta.outputs.labels }}
