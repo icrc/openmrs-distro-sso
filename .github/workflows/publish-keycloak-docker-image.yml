@@ -39,7 +39,7 @@ jobs:
           tags: |
             type=raw,value=${{ env.IMAGE_TAG }}
 
-      - name: Build and push Docker image
+      - name: Build and push Keycloak Docker image
         uses: docker/build-push-action@v5
         with:
           context: ${{ env.CONTEXT }}
