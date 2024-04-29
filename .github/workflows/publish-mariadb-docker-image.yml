@@ -11,4 +11,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build the Docker image
-        run: docker build ./database --file /database/Dockerfile --tag mariadb-10:2.5.12
+        run: docker build ./database --file ./database/Dockerfile --tag mariadb-10:2.5.12
