@@ -11,8 +11,7 @@ services:
       - "80:80"
 
   frontend:
-    build:
-      context: frontend
+    image: ghcr.io/icrc-fdeniger/openmrs-distro-keycloak/openmrs-frontend-2.5.13:latest
     restart: "unless-stopped"
     environment:
       SPA_PATH: /openmrs/spa
@@ -26,8 +25,7 @@ services:
       - backend
 
   backend:
-    build:
-      context: backend
+    image: ghcr.io/icrc-fdeniger/openmrs-distro-keycloak/openmrs-distro-2.5.13:latest
     restart: "unless-stopped"
     depends_on:
       - database
@@ -50,8 +48,7 @@ services:
 
   # MariaDB
   database:
-    build:
-      context: database
+    image: ghcr.io/icrc-fdeniger/openmrs-distro-keycloak/mariadb-10:2.5.12
     ports:
       - "3306:3306"
     restart: "unless-stopped"

@@ -1,1 +1,2 @@
-Will just add oauth2.json file in the configuration to activate SSO login.
+# Why
+Add oauth2.json configuration file to activate SSO login by default.
