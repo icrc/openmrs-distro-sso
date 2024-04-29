@@ -1,5 +1,8 @@
 name: Publish MariaDB docker image with openmrs dump
 
+on:
+  workflow_dispatch:
+
 jobs:
   build:
 
