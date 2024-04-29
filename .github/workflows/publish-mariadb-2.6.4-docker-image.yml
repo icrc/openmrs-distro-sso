@@ -2,7 +2,6 @@ name: Publish MariaDB For OpenMRS 2.6.4 docker image
 
 on:
   workflow_dispatch:
-# See https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: mariadb-10-openmrs-2.6.4

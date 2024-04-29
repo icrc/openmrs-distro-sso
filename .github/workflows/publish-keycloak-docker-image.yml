@@ -1,6 +1,7 @@
 name: Publish Keycloak docker image with automatic users creation
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
