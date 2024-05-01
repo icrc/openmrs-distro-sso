@@ -14,7 +14,6 @@ openmrs.mapping.user.username=preferred_username
 openmrs.mapping.user.username.serviceAccount=email
 openmrs.mapping.person.givenName=given_name
 openmrs.mapping.person.familyName=family_name
-openmrs.mapping.user.systemId=sub
 EOF
 
 cat > "$OMRS_HOME"/data/openmrs-runtime.properties << EOF

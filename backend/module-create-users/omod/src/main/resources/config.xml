@@ -2,14 +2,17 @@
 
 <module configVersion="1.2">
 
-	<id>${project.parent.artifactId}</id>
-	<name>${project.parent.name}</name>
-	<version>${project.parent.version}</version>
-	<package>${project.parent.groupId}.${project.parent.artifactId}</package>
-	<author>${project.parent.organization.name}</author>
-	<description>${project.parent.description}</description>
-	<require_version>${openmrsPlatformVersion}</require_version>
+  <id>${project.parent.artifactId}</id>
+  <name>${project.parent.name}</name>
+  <version>${project.parent.version}</version>
+  <package>${project.parent.groupId}.${project.parent.artifactId}</package>
+  <author>${project.parent.organization.name}</author>
+  <description>${project.parent.description}</description>
+  <require_version>${openmrsPlatformVersion}</require_version>
 
-	<activator>org.openmrs.module.createusers.CreateUsersActivator</activator>
-	<require_module>org.openmrs.module.initializer</require_module>
+  <activator>org.openmrs.module.createusers.CreateUsersActivator</activator>
+  <require_modules>
+    <require_module version="${initializer.version}">org.openmrs.module.initializer</require_module>
+    <require_module version="${datafilter.version}">org.openmrs.module.datafilter</require_module>
+  </require_modules>
 </module>

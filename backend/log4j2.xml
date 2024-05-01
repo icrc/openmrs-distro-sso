@@ -34,6 +34,7 @@
         <Logger name="org.springframework" level="WARN" />
         <Logger name="org.openmrs" level="WARN" />
         <Logger name="org.openmrs.module.initializer" level="INFO" />
+        <Logger name="org.openmrs.module.referencedemodata" level="INFO" />
         <Logger name="org.openmrs.module.initializer.api.OrderedFile" level="ERROR" />
         <Logger name="liquibase" level="INFO" />
         <!--

@@ -11,4 +11,11 @@
 	<packaging>jar</packaging>
 	<name>create-users API</name>
 	<description>API project for create-users</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.openmrs.api</groupId>
+			<artifactId>openmrs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>

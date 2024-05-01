@@ -8,7 +8,7 @@
       SELECT @PERSON_FIRST_NAME := 'Doctor';
       SELECT @PERSON_FAMILIY_NAME := 'Many';
       SELECT @PERSON_GENDER := 'M';
-      SELECT @USERNAME := 'doctor.all';
+      SELECT @USERNAME := 'doctor.many';
       SELECT @ROLE := 'Organizational: Doctor';
       SELECT @LOCATION := 'Community Outreach';
       SELECT @LOCATION_1 := 'Outpatient Clinic';
