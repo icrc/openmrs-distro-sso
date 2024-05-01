@@ -20,7 +20,7 @@ function wait_for_keycloak() {
           echo "INFO: Keycloak admin authentication failed; retry after 2 seconds! Waiting (${wait_time}/${MAX_WAIT}) ..."
           sleep 2
           ((++wait_time))
-      fiddddddddddd
+      fi
     fi
   done
   echo "INFO: Keycloak is ready"
