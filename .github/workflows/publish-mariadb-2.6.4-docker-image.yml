@@ -34,6 +34,7 @@ jobs:
             ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
             type=raw,value=${{ env.IMAGE_TAG }}
+            type=sha
 
       - name: Build and push MariaDB Docker image
         uses: docker/build-push-action@v5
