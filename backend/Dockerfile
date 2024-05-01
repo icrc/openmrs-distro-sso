@@ -11,7 +11,7 @@ COPY distro.properties ./
 COPY module-create-users ./module-create-users
 
 # Build the distro, but only deploy from the amd64 build
-RUN --mount=type=cache,target=/root/.m2 mvn install
+RUN --mount=type=cache,target=/root/.m2 mvn clean install
 
 RUN cp /openmrs_distro/target/sdk-distro/web/openmrs.war /openmrs/distribution/openmrs_core/
 

@@ -4,7 +4,7 @@
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
 <!--  to be avoid as roles are created by liquibase also-->
-<!--  but problem with order-->
+<!--  but issue while loading: if this module is started before iniz, roles won't be available-->
   <include file="create-roles.xml" relativeToChangelogFile="true"/>
   <!--doctor.outpatient Doctor with access to Outpatient Clinic-->
   <include file="create-doctor-outpatient-clinic.xml" relativeToChangelogFile="true"/>
