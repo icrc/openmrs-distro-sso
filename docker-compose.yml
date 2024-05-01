@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   gateway:
     image: openmrs/openmrs-reference-application-3-gateway:${TAG:-qa}
@@ -11,7 +9,9 @@ services:
       - "80:80"
 
   frontend:
-    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-frontend-qa:latest
+#    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-frontend-qa:latest
+    build:
+      context: frontend
     restart: "unless-stopped"
     environment:
       SPA_PATH: /openmrs/spa
@@ -25,7 +25,10 @@ services:
       - backend
 
   backend:
-    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-backend-2.5.13:latest
+#    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-backend-2.5.13:latest
+    build:
+      context: backend
+
     restart: "unless-stopped"
     depends_on:
       - database
@@ -48,7 +51,9 @@ services:
 
   # MariaDB
   database:
-    image: ghcr.io/icrc/openmrs-distro-sso/mariadb-10-openmrs-2.5.12:latest
+#    image: ghcr.io/icrc/openmrs-distro-sso/mariadb-10-openmrs-2.5.12:latest
+    build:
+      context: database
     ports:
       - "3306:3306"
     restart: "unless-stopped"
@@ -67,7 +72,9 @@ services:
       - db-data:/var/lib/mysql
 
   keycloak:
-    image: ghcr.io/icrc/openmrs-distro-sso/keycloak-24.0.3:latest
+#    image: ghcr.io/icrc/openmrs-distro-sso/keycloak-24.0.3:latest
+    build:
+      context: keycloak
     ports:
       - "8080:8080"
     environment:

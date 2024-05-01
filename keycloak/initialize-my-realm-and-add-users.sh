@@ -63,6 +63,6 @@ while read email; do
     -s email="${email}" \
     -s enabled=true \
     -s emailVerified=true \
-    -s credentials='[{"type":"password","value":"'${USERS_DEFAULT_PASSWORD}'","temporary":false}]'
+    -s credentials="[{\"type\":\"password\",\"value\":\"${USERS_DEFAULT_PASSWORD}\"}]"
   echo "Create username ${username} with email ${email}"
 done </opt/keycloak/bin/users.csv

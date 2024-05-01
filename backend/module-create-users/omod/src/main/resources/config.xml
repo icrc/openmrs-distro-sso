@@ -11,7 +11,7 @@
 	<require_version>${openmrsPlatformVersion}</require_version>
 
 	<activator>org.openmrs.module.createusers.CreateUsersActivator</activator>
-	<require_module version="${appointments.version}">org.openmrs.module.appointments
+	<require_module version="${appointments.version}">org.bahmni.module.appointments
 	</require_module>
 	<require_module version="${initializer.version}">org.openmrs.module.initializer
 	</require_module>
