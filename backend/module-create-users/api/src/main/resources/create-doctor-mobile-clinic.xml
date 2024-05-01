@@ -11,7 +11,6 @@
       SELECT @USERNAME := 'doctor.mobile';
       SELECT @ROLE := 'Organizational: Doctor';
       SELECT @LOCATION := 'Mobile Clinic';
-      SELECT @ATTRIBUTE_TYPE_ID:= provider_attribute_type_id from provider_attribute_type where name= 'Available for appointments';
       SELECT @UUID := uuid();
       SELECT @TITLE := '';
       SELECT @NEXT_PERSON_ID := null;
@@ -28,9 +27,6 @@
       INSERT INTO provider(provider_id, person_id, identifier, creator, date_created, uuid) SELECT @NEXT_PROVIDER_ID, @NEXT_PERSON_ID, @USERNAME, 1, NOW(), @UUID FROM DUAL WHERE EXISTS(SELECT user_id from users u where username = @USERNAME) = 0;
       INSERT INTO users (user_id, person_id, system_id, username, creator, date_created, retired, uuid, password, salt) VALUES (@NEXT_USER_ID, @NEXT_PERSON_ID, @USERNAME, @USERNAME, 1, NOW(), 0, @UUID, '', '') ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, system_id = @USERNAME, username = @USERNAME, creator = 1, date_created = NOW(), retired = 0, uuid = @UUID, password = '', salt = '';
       INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'forcePassword', false) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'forcePassword', property_value = false;
-      SELECT @PROVIDER_ID := provider_id from provider where person_id =(select person_id from users where user_id=@NEXT_USER_ID);
-      SELECT @NEXT_ATTRIBUTE_PROVIDER_ID := (SELECT case when EXISTS(SELECT @OLD_ATTRIBUTE_PROVIDER_ID := provider_attribute_id from provider_attribute p where attribute_type_id = @ATTRIBUTE_TYPE_ID and provider_id= @PROVIDER_ID) = 0 then (SELECT (MAX(provider_attribute_id) + 1)) else (SELECT @OLD_ATTRIBUTE_PROVIDER_ID := provider_attribute_id from provider_attribute p where attribute_type_id = @ATTRIBUTE_TYPE_ID and provider_id= @PROVIDER_ID) end from provider_attribute);
-      INSERT INTO provider_attribute(provider_attribute_id, provider_id, attribute_type_id, value_reference, uuid, creator, date_created) values(@NEXT_ATTRIBUTE_PROVIDER_ID, @PROVIDER_ID, @ATTRIBUTE_TYPE_ID, 'true', uuid(), 1, NOW())  ON DUPLICATE KEY UPDATE provider_attribute_id = @NEXT_ATTRIBUTE_PROVIDER_ID, provider_id = @PROVIDER_ID, attribute_type_id = @ATTRIBUTE_TYPE_ID, value_reference = 'true', uuid = uuid(), creator = 1, date_created = NOW();
       INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'lockoutTimestamp', '') ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'lockoutTimestamp', property_value = '';
       INSERT INTO user_property(user_id, property, property_value) values(@NEXT_USER_ID, 'loginAttempts', 0) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, property = 'loginAttempts', property_value = 0;
       DELETE FROM user_role WHERE user_id = @NEXT_USER_ID;
