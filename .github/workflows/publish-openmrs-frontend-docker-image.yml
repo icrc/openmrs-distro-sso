@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - frontend/*
+      - frontend/**
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: openmrs-frontend-qa

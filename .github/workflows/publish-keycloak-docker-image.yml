@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - keycloak/*
+      - keycloak/**
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: keycloak-24.0.3

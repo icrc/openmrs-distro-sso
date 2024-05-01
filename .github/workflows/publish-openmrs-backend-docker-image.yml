@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - backend/*
+      - backend/**
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: openmrs-backend-2.5.13
