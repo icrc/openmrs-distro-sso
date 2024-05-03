@@ -24,7 +24,7 @@
     <!--    ICRC customization: we are using 2.5 version-->
     <openmrs.version>2.5.13-SNAPSHOT</openmrs.version>
 
-    <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
+    <datafilter.version>2.3.0-SNAPSHOT</datafilter.version>
     <oauth2login.version>1.4.0</oauth2login.version>
     <create-users.version>1.0.0-SNAPSHOT</create-users.version>
     <openmrsAtomfeed.version>2.6.3</openmrsAtomfeed.version>
