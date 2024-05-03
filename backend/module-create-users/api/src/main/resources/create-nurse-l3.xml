@@ -3,14 +3,14 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
-  <changeSet id="create-doctor-community-outreach" author="fdeniger">
+  <changeSet id="create-nurse-l3-clinic" author="fdeniger">
     <sql>
-      SELECT @PERSON_FIRST_NAME := 'Doctor';
-      SELECT @PERSON_FAMILIY_NAME := 'Outreach';
+      SELECT @PERSON_FIRST_NAME := 'Nurse';
+      SELECT @PERSON_FAMILIY_NAME := 'Location 3';
       SELECT @PERSON_GENDER := 'M';
-      SELECT @USERNAME := 'doctor.outreach';
-      SELECT @ROLE := 'Organizational: Doctor';
-      SELECT @LOCATION := 'Community Outreach';
+      SELECT @USERNAME := 'nurse.l3';
+      SELECT @ROLE := 'Organizational: Nurse';
+      SELECT @LOCATION := 'Location 3';
       SELECT @UUID := uuid();
       SELECT @TITLE := '';
       SELECT @NEXT_PERSON_ID := null;

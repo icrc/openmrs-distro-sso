@@ -9,13 +9,11 @@
  */
 package org.openmrs.module.createusers;
 
-import org.apache.commons.collections.MapUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.liquibase.ChangeSetExecutorCallback;
 import org.openmrs.module.BaseModuleActivator;
-import org.openmrs.util.DatabaseUpdateException;
 import org.openmrs.util.DatabaseUpdater;
-import org.openmrs.util.InputRequiredException;
 
 /**
  * This class contains the logic that is run every time this module is either started or shutdown
@@ -27,14 +25,16 @@ public class CreateUsersActivator extends BaseModuleActivator {
 	/**
 	 * @see #started()
 	 */
+	@Override
 	public void started() {
 		log.warn("Started Create.users");
 		log.warn("Normally oauth2 module should manage datafilter inputs as well: To be improved.");
 		try {
-			DatabaseUpdater.executeChangelog("liquibase-add-default-users.xml", MapUtils.EMPTY_MAP);
-		} catch (DatabaseUpdateException | InputRequiredException e) {
+			DatabaseUpdater.executeChangelog("liquibase-add-default-users.xml", (ChangeSetExecutorCallback) null);
+		} catch (Exception e) {
 			log.error(e);
 		}
+		new ReferenceDemoDataCreator().create();
   }
 	
 	/**

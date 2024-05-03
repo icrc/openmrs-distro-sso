@@ -1,33 +1,38 @@
-# openmrs-distro-keycloak
-reference openmrs distro datafilter, oauth2 module using Keycloak with default users configured:
-- The users list is given by `keycloak/users.csv`
-- The default password is setup in a env variables, see `env.default`
+# Why
+The goal of this distribution is to enable the effortless initiation of an OpenMRS Distro with Single Sign-On (SSO) and DataFilter activated through a single command line (utilizing Docker).
 
-# How to start
+# ICRC Customization
+
+This distribution is a customized version of https://github.com/openmrs/openmrs-distro-referenceapplication to:
+- integrate Oauth2 Module: [openmrs-module-oauth2login](https://github.com/openmrs/openmrs-module-oauth2login)
+- integrate DataFilter Module: [openmrs-module-datafilter](https://github.com/openmrs/openmrs-module-datafilter)
+- Generate default users and populate the database with patient data.
+
+# Components
+
+- [database](./database/README.md) is used to create a MariaDB Docker Image with an "initial" OpenMRS Dump.
+- [frontend](./frontend/README.md) activate oauth2 login in the frontend
+- [backend](./backend/README.md) create an OpenMRS distribution incorporating OAuth2, DataFilter modules, and a custom module for generating default users and patients. 
+- [keycloak](./keycloak/README.md) start and configure automatically Keycloak
+
+# How to build and start
+
 1. Copy the file `.env.default` to `.env`
 2. Edit .env and provide default username, password
-3. Start Using published images:
-   `docker compose -f docker-compose.yml up -d --build`
-4. to build images locally and start: `docker compose up -d --build`
+3. Start dockers with: `docker compose up -d --build`
+4. Go to http://localhost
+5. You should be redirected to Keycloak.
+6. Sign in using a user selected from the provided list [keycloak/users.csv](./keycloak/users.csv) and the password defined in `.env` 
 
-# Login to ghrc
+To login you can use the username (before @). For instance to log as `doctor.many@localhost.local`, you can use `doctor.many` in sso login page.
+
+# How to use images:
+A default docker-compose file is available here:
+https://github.com/icrc/openmrs-android-fhir/docker-compose.yml
+
+A `.env` is always required to define passwords and sso admin username.
 
 
-```bash
-export CR_PAT=YOUR_TOKEN
-echo $CR_PAT | docker login ghcr.io -u <yourAccount> --password-stdin
-```
-
-See https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry
-
-# Useful command
-
-- `docker compose down -v` to restart all from scratch
-- `docker compose up -d` to start quickly
-
-# Other Resources
-
-- [database](./database/README.md) is used to ceate a MariaDB Docker Image with an OpenMRS Dump.
 
 
 

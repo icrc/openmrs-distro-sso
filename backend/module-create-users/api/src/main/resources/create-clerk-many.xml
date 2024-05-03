@@ -10,9 +10,9 @@
       SELECT @PERSON_GENDER := 'M';
       SELECT @USERNAME := 'clerk.many';
       SELECT @ROLE := 'Organizational: Registration Clerk';
-      SELECT @LOCATION := 'Community Outreach';
-      SELECT @LOCATION_1 := 'Outpatient Clinic';
-      SELECT @LOCATION_2 := 'Mobile Clinic';
+      SELECT @LOCATION := 'Location 1';
+      SELECT @LOCATION_1 := 'Location 2';
+      SELECT @LOCATION_2 := 'Location 3';
       SELECT @UUID := uuid();
       SELECT @TITLE := '';
       SELECT @NEXT_PERSON_ID := null;

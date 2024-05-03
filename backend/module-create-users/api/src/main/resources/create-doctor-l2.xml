@@ -3,14 +3,14 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
-  <changeSet id="create-clerk-community-outreach" author="fdeniger">
+  <changeSet id="create-doctor-l2-clinic" author="fdeniger">
     <sql>
-      SELECT @PERSON_FIRST_NAME := 'Clerk';
-      SELECT @PERSON_FAMILIY_NAME := 'Outreach';
+      SELECT @PERSON_FIRST_NAME := 'Doctor';
+      SELECT @PERSON_FAMILIY_NAME := 'Location 2';
       SELECT @PERSON_GENDER := 'M';
-      SELECT @USERNAME := 'clerk.outreach';
-      SELECT @ROLE := 'Organizational: Registration Clerk';
-      SELECT @LOCATION := 'Community Outreach';
+      SELECT @USERNAME := 'doctor.l2';
+      SELECT @ROLE := 'Organizational: Doctor';
+      SELECT @LOCATION := 'Location 2';
       SELECT @UUID := uuid();
       SELECT @TITLE := '';
       SELECT @NEXT_PERSON_ID := null;
@@ -32,6 +32,7 @@
       DELETE FROM user_role WHERE user_id = @NEXT_USER_ID;
       INSERT INTO user_role VALUES (@NEXT_USER_ID, trim(@ROLE)) ON DUPLICATE KEY UPDATE user_id = @NEXT_USER_ID, role = trim(@ROLE);
       INSERT INTO datafilter_entity_basis_map (entity_identifier, entity_type, basis_identifier, basis_type, creator, date_created, uuid) VALUES (@NEXT_USER_ID, 'org.openmrs.User', (SELECT @_ID := location_id from location where name=@LOCATION), 'org.openmrs.Location', 1, NOW(), uuid()) ON DUPLICATE KEY UPDATE entity_identifier = @NEXT_USER_ID, entity_type = 'org.openmrs.User', basis_identifier = (select @_ID := location_id from location where name=@LOCATION), basis_type = 'org.openmrs.Location', creator = 1, date_created = NOW(), uuid = uuid();
+
     </sql>
   </changeSet>
 </databaseChangeLog>

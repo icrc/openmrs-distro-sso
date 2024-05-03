@@ -15,6 +15,16 @@
   <name>create-users</name>
   <description>no description</description>
 
+  <properties>
+    <idgen.version>4.4.0</idgen.version>
+    <appointments.version>2.0.0-20231101.130425-8</appointments.version>
+    <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
+    <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
+    <patientflags.version>3.0.5</patientflags.version>
+    <referencedemodata.version>2.4.0</referencedemodata.version>
+  </properties>
+
+
 
   <modules>
     <module>api</module>
@@ -49,10 +59,49 @@
       <dependency>
         <groupId>org.openmrs.api</groupId>
         <artifactId>openmrs-api</artifactId>
-        <version>2.3.0</version>
+        <version>2.5.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.openmrs.api</groupId>
+      <artifactId>openmrs-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>referencedemodata-api</artifactId>
+      <version>${referencedemodata.version}</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>idgen-api</artifactId>
+      <version>${idgen.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.bahmni.module</groupId>
+      <artifactId>appointments-api</artifactId>
+      <version>${appointments.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>datafilter-api</artifactId>
+      <version>${datafilter.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>patientflags-api</artifactId>
+      <version>${patientflags.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
 
   <repositories>
     <repository>
@@ -78,7 +127,4 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <properties>
-    <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
-  </properties>
 </project>

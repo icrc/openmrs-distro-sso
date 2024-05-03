@@ -3,14 +3,14 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
 
-  <changeSet id="create-clerk-mobile-clinic" author="fdeniger">
+  <changeSet id="create-clerk-l3-clinic" author="fdeniger">
     <sql>
       SELECT @PERSON_FIRST_NAME := 'Clerk';
-      SELECT @PERSON_FAMILIY_NAME := 'Outpatient';
+      SELECT @PERSON_FAMILIY_NAME := 'Location 3';
       SELECT @PERSON_GENDER := 'M';
-      SELECT @USERNAME := 'clerk.mobile';
+      SELECT @USERNAME := 'clerk.l3';
       SELECT @ROLE := 'Organizational: Registration Clerk';
-      SELECT @LOCATION := 'Mobile Clinic';
+      SELECT @LOCATION := 'Location 3';
       SELECT @UUID := uuid();
       SELECT @TITLE := '';
       SELECT @NEXT_PERSON_ID := null;

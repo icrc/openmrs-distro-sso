@@ -35,6 +35,7 @@
         <Logger name="org.openmrs" level="WARN" />
         <Logger name="org.openmrs.module.initializer" level="INFO" />
         <Logger name="org.openmrs.module.referencedemodata" level="INFO" />
+        <Logger name="org.openmrs.module.createusers" level="INFO" />
         <Logger name="org.openmrs.module.initializer.api.OrderedFile" level="ERROR" />
         <Logger name="liquibase" level="INFO" />
         <!--
@@ -52,6 +53,8 @@
         <Logger name="org.springframework.context.support.ResourceBundleMessageSource" level="ERROR" />
         <Logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR" />
         <Logger name="org.hibernate.orm.deprecation" additivity="false" level="ERROR"/>
+        <Logger name="org.hibernate.SQL" additivity="false" level="DEBUG"/>
+        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE"/>
         <Root level="WARN">
             <AppenderRef ref="CONSOLE" />
         </Root>

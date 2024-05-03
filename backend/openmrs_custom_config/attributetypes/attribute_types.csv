@@ -1,0 +1,2 @@
+Uuid,Void/Retire,Entity name,Name,Description,Min occurs,Max occurs,Datatype classname,Datatype config,Preferred handler classname,Handler config,_order:1000
+1bb29984-3193-11e7-93ae-92367f002671,,Location,Code,Location Code used for prefixing HSU IDs,0,1,org.openmrs.customdatatype.datatype.FreeTextDatatype,,,,

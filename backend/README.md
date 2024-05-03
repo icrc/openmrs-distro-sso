@@ -1,39 +1,9 @@
-_Packages a distribution of configs, metadata and binaries to run OpenMRS_
+ICRC Customization of https://github.com/openmrs/openmrs-distro-referenceapplication to:
+- integrate Oauth2 Module: [openmrs-module-oauth2login](https://github.com/openmrs/openmrs-module-oauth2login)
+- integrate DataFilter Module: [openmrs-module-datafilter](https://github.com/openmrs/openmrs-module-datafilter)
+- activate Location Based identifier ( see related configuration in `openmrs_custom_config` folder)
+- 4 Locations are activated: `Location 1`,`Location 2`,`Location 3`,`Location 4`. See [openmrs_custom_config/locations/locations-core_demo_with_code.csv](./openmrs_custom_config/locations/locations-core_demo_with_code.csv)
+- Create Default user via the intern module `module-create-users` (to be improved): see [module-create-users/README.md](./module-create-users/README.md)
 
------
 
-```bash
-mvn clean package
-```
-
-Output:
-
-`target/openmrs-distro-package/openmrs-distro-package-$version.zip`
-
-Package contents:
-
-|File or Directory|Description|
-|-----------------|-----------|
-|`openmrs_config` |The OpenMRS configuration, particularly including any files to be processed by the [Initializer module](https://github.com/mekomsolutions/openmrs-module-initializer). An example configuration can be found [here](https://github.com/mekomsolutions/openmrs-config-haiti).
-|`openmrs_core`   |The main OpenMRS WAR file.|
-|`openmrs_module` |The modules (OMODs) to be run in this OpenMRS instance.|
-|`spa`            |The compiled SPA for the 3.x frontend.|
-|`spa_config`     |Any configuration files used by the SPA.|
-|`openmrs-distro.properties`|The distro.properties used to generate this package.|
-
-----
-
-### Specifying dependencies
-#### OpenMRS modules
-`omod`s are specified as Maven `<dependency>` in the [pom.xml](pom.xml) file.
-
-#### OpenMRS Configuration (Initializer)
-OpenMRS config can be set in [openmrs-config/configuration/](openmrs-config/configuration/) folder
-
-#### Micro Frontends
-ESMs are set in the [spa-config.json](spa-config.json) file.
-
-#### Micro Frontends configuration
-MF Config can be set in [spa-config/configuration/](spa-config/configuration/) folder
-
-----
+O

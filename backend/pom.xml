@@ -9,7 +9,7 @@
   </parent>
   <!--See https://github.com/openmrs/openmrs-distro-referenceapplication/blob/main/distro/pom.xml-->
   <artifactId>ssoapplication-distro</artifactId>
-  <name>OpenMRS distro</name>
+  <name>SSO OpenMRS distro</name>
   <packaging>pom</packaging>
 
   <modules>

@@ -7,15 +7,10 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
+
 	<artifactId>create-users-api</artifactId>
 	<packaging>jar</packaging>
 	<name>create-users API</name>
 	<description>API project for create-users</description>
-	<dependencies>
-		<dependency>
-			<groupId>org.openmrs.api</groupId>
-			<artifactId>openmrs-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
+
 </project>

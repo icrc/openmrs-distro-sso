@@ -1,17 +1,23 @@
 <config>
-    <globalProperties>
-        <globalProperty>
-            <property>oauth2login.redirectUriAfterLogin</property>
-            <value>/spa/home</value>
-        </globalProperty>
-        <!--    To let users see appointments-->
-        <globalProperty>
-            <property>icrc_PrivBasedAppointmentFilter.disabled</property>
-            <value>true</value>
-        </globalProperty>
-        <globalProperty>
-            <property>icrc_PrivBasedApptServiceDefFilter.disabled</property>
-            <value>true</value>
-        </globalProperty>
-    </globalProperties>
+  <globalProperties>
+    <!--    Oauth2 -->
+    <globalProperty>
+      <property>oauth2login.redirectUriAfterLogin</property>
+      <value>/spa/home</value>
+    </globalProperty>
+<!--    Datafilter-->
+    <globalProperty>
+      <property>datafilter.patientLocationLinkingInterceptor.enabled</property>
+      <value>true</value>
+      <description>
+        Enables Data Filter's PatientLocationLinkingInterceptor that associates newly created patients with the current
+        user's session location.
+      </description>
+    </globalProperty>
+<!--    ID link for location prefix-->
+    <globalProperty>
+      <property>idgen.prefixLocationAttributeType</property>
+      <value>Code</value>
+    </globalProperty>
+  </globalProperties>
 </config>

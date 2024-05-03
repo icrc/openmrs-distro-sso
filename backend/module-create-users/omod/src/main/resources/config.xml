@@ -12,7 +12,13 @@
 
   <activator>org.openmrs.module.createusers.CreateUsersActivator</activator>
   <require_modules>
+    <require_module>org.openmrs.module.idgen</require_module>
+    <require_module>org.openmrs.module.fhir2</require_module>
+    <require_module>org.openmrs.module.patientflags</require_module>
+    <require_module>org.openmrs.module.webservices.rest</require_module>
     <require_module version="${initializer.version}">org.openmrs.module.initializer</require_module>
     <require_module version="${datafilter.version}">org.openmrs.module.datafilter</require_module>
+<!--    <require_module>org.openmrs.module.referencedemodata</require_module>-->
   </require_modules>
+
 </module>
