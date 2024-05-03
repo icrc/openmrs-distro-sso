@@ -11,7 +11,7 @@ userInfoUri=http://keycloak:8080/realms/main/protocol/openid-connect/userinfo
 logoutUri=${OMRS_OAUTH_USER_LOGOUT_URI}
 scope=openid
 openmrs.mapping.user.username=preferred_username
-openmrs.mapping.user.username.serviceAccount=email
+openmrs.mapping.user.username.serviceAccount=preferred_username
 openmrs.mapping.person.givenName=given_name
 openmrs.mapping.person.familyName=family_name
 EOF
