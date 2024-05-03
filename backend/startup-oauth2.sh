@@ -2,16 +2,16 @@
 #See the code https://github.com/openmrs/openmrs-core/blob/2.5.12/startup-init.sh
 OMRS_HOME=${OMRS_HOME:-'/openmrs'}
 cat > "$OMRS_HOME"/data/oauth2.properties << EOF
-clientId=openmrs
+clientId=${OMRS_OAUTH_CLIENT_ID:-openmrs}
 clientSecret=${OMRS_OAUTH_CLIENT_SECRET}
 userAuthorizationUri=${OMRS_OAUTH_USER_AUTHORIZATION_URI}
-accessTokenUri=http://keycloak:8080/realms/main/protocol/openid-connect/token
-keysUrl=http://keycloak:8080/realms/main/protocol/openid-connect/certs
-userInfoUri=http://keycloak:8080/realms/main/protocol/openid-connect/userinfo
+accessTokenUri=${OMRS_OAUTH_TOKEN_URI:-http://keycloak:8080/realms/main/protocol/openid-connect/token}
+keysUrl=${OMRS_OAUTH_KEY_URI:-http://keycloak:8080/realms/main/protocol/openid-connect/certs}
+userInfoUri=${OMRS_OAUTH_USER_INFO_URI:-http://keycloak:8080/realms/main/protocol/openid-connect/userinfo}
 logoutUri=${OMRS_OAUTH_USER_LOGOUT_URI}
-scope=openid
-openmrs.mapping.user.username=preferred_username
-openmrs.mapping.user.username.serviceAccount=preferred_username
+scope=${OMRS_OAUTH_SCOPE:-openid}
+openmrs.mapping.user.username=${OMRS_OAUTH_MAPPING_USERNAME:-preferred_username}
+openmrs.mapping.user.username.serviceAccount=${OMRS_OAUTH_MAPPING_USERNAME_SA:-preferred_username}
 openmrs.mapping.person.givenName=given_name
 openmrs.mapping.person.familyName=family_name
 EOF
