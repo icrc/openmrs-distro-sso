@@ -34,7 +34,8 @@ COPY --from=dev /openmrs/distribution/openmrs_owas /openmrs/distribution/openmrs
 COPY --from=dev /openmrs/distribution/openmrs_config /openmrs/distribution/openmrs_config
 COPY openmrs_custom_config /openmrs/distribution/openmrs_config
 COPY logging.sysout.properties /usr/local/tomcat/conf/logging.properties
-#COPY server.xml /usr/local/tomcat/conf/server.xml
+# To display all logs in terminal
+COPY server.xml /usr/local/tomcat/conf/server.xml
 COPY log4j2.xml /openmrs/distribution/
 
 COPY --chmod=0755 ./startup-oauth2.sh /openmrs/

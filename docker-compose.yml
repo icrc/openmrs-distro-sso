@@ -86,7 +86,8 @@ services:
       USERS_DEFAULT_PASSWORD: ${USERS_DEFAULT_PASSWORD}
       KC_HOSTNAME_STRICT: false
       KC_HTTP_ENABLED: true
-      KC_HOSTNAME: localhost
+#      KC_HOSTNAME: localhost
+      KC_HOSTNAME: 10.0.2.2
     command: ["start-dev"]
 
 volumes:

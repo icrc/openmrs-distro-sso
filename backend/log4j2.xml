@@ -53,8 +53,7 @@
         <Logger name="org.springframework.context.support.ResourceBundleMessageSource" level="ERROR" />
         <Logger name="org.springframework.beans.factory.support.DefaultListableBeanFactory" level="ERROR" />
         <Logger name="org.hibernate.orm.deprecation" additivity="false" level="ERROR"/>
-        <Logger name="org.hibernate.SQL" additivity="false" level="DEBUG"/>
-        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE"/>
+        <Logger name="org.openmrs.module.fhir2"  level="DEBUG"/>
         <Root level="WARN">
             <AppenderRef ref="CONSOLE" />
         </Root>
