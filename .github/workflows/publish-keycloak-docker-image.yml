@@ -9,7 +9,8 @@ on:
       - keycloak/**
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: keycloak-24.0.3
+  IMAGE_NAME: keycloak
+  IMAGE_VERSION: 24.0.3
   IMAGE_TAG: latest
   CONTEXT: ./keycloak
 jobs:
@@ -38,8 +39,8 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.IMAGE_TAG }}
-            type=sha
+            type=raw,value=${{ env.IMAGE_VERSION }}-${{ env.IMAGE_TAG }}
+            type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
       - name: Build and push Keycloak Docker image
         uses: docker/build-push-action@v5
