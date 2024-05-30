@@ -43,7 +43,6 @@ jobs:
           context: ${{ env.CONTEXT }}
           build-args: |
             DUMP_FILENAME=openmrs-2.6.4.sql.gz
-
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
