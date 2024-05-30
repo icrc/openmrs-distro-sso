@@ -28,23 +28,23 @@ import java.util.List;
 import static org.openmrs.module.referencedemodata.ReferenceDemoDataConstants.OPENMRS_ID_NAME;
 
 public class DemoPatientGeneratorWithLocation {
-
-  Logger log = LoggerFactory.getLogger(DemoPatientGeneratorWithLocation.class);
-
-  private final IdentifierSourceService iss;
-
-  public DemoPatientGeneratorWithLocation(IdentifierSourceService iss) {
-    this.iss = iss;
-  }
-
-  /**
-   * Main entry point to create patients. Creates the specified number of patients and returns a
-   * list of database IDs for those patients.
-   *
-   * @param patientCount number of patients to create
-   * @return a list of the primary keys for each patient created
-   */
-  public List<Integer> createDemoPatients(int patientCount) {
+	
+	Logger log = LoggerFactory.getLogger(DemoPatientGeneratorWithLocation.class);
+	
+	private final IdentifierSourceService iss;
+	
+	public DemoPatientGeneratorWithLocation(IdentifierSourceService iss) {
+		this.iss = iss;
+	}
+	
+	/**
+	 * Main entry point to create patients. Creates the specified number of patients and returns a
+	 * list of database IDs for those patients.
+	 * 
+	 * @param patientCount number of patients to create
+	 * @return a list of the primary keys for each patient created
+	 */
+	public List<Integer> createDemoPatients(int patientCount) {
     List<Integer> patientIds = new ArrayList<>(patientCount);
 
     PatientService ps = Context.getPatientService();
@@ -74,20 +74,20 @@ public class DemoPatientGeneratorWithLocation {
 
     return patientIds;
   }
-
-  private Patient createDemoPatient(PatientService ps, PatientIdentifierType patientIdentifierType, Location location) {
-    Patient patient = new Patient();
-
-    DemoPersonGenerator.populatePerson(patient);
-
-    PatientIdentifier patientIdentifier = new PatientIdentifier();
-    patientIdentifier.setIdentifier(iss.generateIdentifier(patientIdentifierType, "DemoData"));
-    patientIdentifier.setIdentifierType(patientIdentifierType);
-    patientIdentifier.setDateCreated(new Date());
-    patientIdentifier.setLocation(location);
-    patient.addIdentifier(patientIdentifier);
-
-    patient = ps.savePatient(patient);
-    return patient;
-  }
+	
+	private Patient createDemoPatient(PatientService ps, PatientIdentifierType patientIdentifierType, Location location) {
+		Patient patient = new Patient();
+		
+		DemoPersonGenerator.populatePerson(patient);
+		
+		PatientIdentifier patientIdentifier = new PatientIdentifier();
+		patientIdentifier.setIdentifier(iss.generateIdentifier(patientIdentifierType, "DemoData"));
+		patientIdentifier.setIdentifierType(patientIdentifierType);
+		patientIdentifier.setDateCreated(new Date());
+		patientIdentifier.setLocation(location);
+		patient.addIdentifier(patientIdentifier);
+		
+		patient = ps.savePatient(patient);
+		return patient;
+	}
 }

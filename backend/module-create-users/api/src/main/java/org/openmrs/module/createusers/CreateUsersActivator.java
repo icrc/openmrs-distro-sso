@@ -31,11 +31,12 @@ public class CreateUsersActivator extends BaseModuleActivator {
 		log.warn("Normally oauth2 module should manage datafilter inputs as well: To be improved.");
 		try {
 			DatabaseUpdater.executeChangelog("liquibase-add-default-users.xml", (ChangeSetExecutorCallback) null);
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			log.error(e);
 		}
 		new ReferenceDemoDataCreator().create();
-  }
+	}
 	
 	/**
 	 * @see #shutdown()

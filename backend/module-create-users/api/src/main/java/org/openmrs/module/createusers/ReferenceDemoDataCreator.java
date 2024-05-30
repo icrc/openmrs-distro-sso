@@ -34,21 +34,18 @@ import static org.openmrs.api.context.Context.getVisitService;
 import static org.openmrs.util.OpenmrsConstants.GP_CASE_SENSITIVE_DATABASE_STRING_COMPARISON;
 
 /**
- * ICRC customization:
- *  - support for location and remove appointments Generator
- * - Visits are created in threads
- * TODO: to be improved and maybe pushed back in demodat module.
- * See {@link org.openmrs.module.referencedemodata.ReferenceDemoDataActivator}
+ * ICRC customization: - support for location and remove appointments Generator - Visits are created
+ * in threads TODO: to be improved and maybe pushed back in demodat module. See
+ * {@link org.openmrs.module.referencedemodata.ReferenceDemoDataActivator}
  */
 public class ReferenceDemoDataCreator {
-
-  Logger log = LoggerFactory.getLogger(ReferenceDemoDataCreator.class);
-
-
-  // this property exists for testing and should only have a value during the started() function
-  private static IdentifierSourceService iss = null;
-
-  public void create() {
+	
+	Logger log = LoggerFactory.getLogger(ReferenceDemoDataCreator.class);
+	
+	// this property exists for testing and should only have a value during the started() function
+	private static IdentifierSourceService iss = null;
+	
+	public void create() {
     final String prop = "referencedemodata.createDemoPatientsOnNextStartup";
     // basic idea: on start-up work out how many patients, if any we should generate
     // if there aren't any, we exit. Otherwise, we ensure some users and providers are set up and then start generating data
@@ -143,46 +140,46 @@ public class ReferenceDemoDataCreator {
       log.error("Failed to load ReferenceDemoData module due to exception", e);
     }
   }
-
-
-  private void linkAdminAccountToAProviderIfNecessary() {
-    try {
-      // If unknown provider isn't yet linked to admin, then do it
-      Context.addProxyPrivilege(PrivilegeConstants.GET_PROVIDERS);
-      Context.addProxyPrivilege(PrivilegeConstants.GET_PERSONS);
-      Context.addProxyPrivilege(PrivilegeConstants.MANAGE_PROVIDERS);
-
-      ProviderService ps = Context.getProviderService();
-      Person adminPerson = Context.getPersonService().getPerson(1);
-
-      Collection<Provider> possibleProvider = ps.getProvidersByPerson(adminPerson);
-      if (possibleProvider.size() == 0) {
-        List<Provider> providers = ps.getAllProviders(false);
-
-        Provider provider;
-        if (providers.size() == 0) {
-          provider = new Provider();
-          provider.setIdentifier("admin");
-        } else {
-          provider = providers.get(0);
-        }
-
-        provider.setPerson(adminPerson);
-        ps.saveProvider(provider);
-      }
-    } finally {
-      Context.removeProxyPrivilege(PrivilegeConstants.GET_PROVIDERS);
-      Context.removeProxyPrivilege(PrivilegeConstants.GET_PERSONS);
-      Context.removeProxyPrivilege(PrivilegeConstants.MANAGE_PROVIDERS);
-    }
-  }
-
-  private IdentifierSourceService getIdentifierSourceService() {
-    if (iss == null) {
-      iss = Context.getService(IdentifierSourceService.class);
-    }
-
-    return iss;
-  }
-
+	
+	private void linkAdminAccountToAProviderIfNecessary() {
+		try {
+			// If unknown provider isn't yet linked to admin, then do it
+			Context.addProxyPrivilege(PrivilegeConstants.GET_PROVIDERS);
+			Context.addProxyPrivilege(PrivilegeConstants.GET_PERSONS);
+			Context.addProxyPrivilege(PrivilegeConstants.MANAGE_PROVIDERS);
+			
+			ProviderService ps = Context.getProviderService();
+			Person adminPerson = Context.getPersonService().getPerson(1);
+			
+			Collection<Provider> possibleProvider = ps.getProvidersByPerson(adminPerson);
+			if (possibleProvider.size() == 0) {
+				List<Provider> providers = ps.getAllProviders(false);
+				
+				Provider provider;
+				if (providers.size() == 0) {
+					provider = new Provider();
+					provider.setIdentifier("admin");
+				} else {
+					provider = providers.get(0);
+				}
+				
+				provider.setPerson(adminPerson);
+				ps.saveProvider(provider);
+			}
+		}
+		finally {
+			Context.removeProxyPrivilege(PrivilegeConstants.GET_PROVIDERS);
+			Context.removeProxyPrivilege(PrivilegeConstants.GET_PERSONS);
+			Context.removeProxyPrivilege(PrivilegeConstants.MANAGE_PROVIDERS);
+		}
+	}
+	
+	private IdentifierSourceService getIdentifierSourceService() {
+		if (iss == null) {
+			iss = Context.getService(IdentifierSourceService.class);
+		}
+		
+		return iss;
+	}
+	
 }

@@ -12,20 +12,20 @@ import java.util.List;
  * Generate data with other provider to user provider linked to a location.
  */
 public class DemoProviderGeneratorWithLocation extends DemoProviderGenerator {
-
-  private List<Provider> clinicians = null;
-
-  private List<Provider> labTechs = null;
-
-  @Override
+	
+	private List<Provider> clinicians = null;
+	
+	private List<Provider> labTechs = null;
+	
+	@Override
   public Provider getRandomClinician() {
     if (clinicians == null) {
       clinicians = new ArrayList<>(Context.getProviderService().getAllProviders(false));
     }
     return Randomizer.randomListEntry(clinicians);
   }
-
-  @Override
+	
+	@Override
   public Provider getRandomLabTech() {
     if (labTechs == null) {
       labTechs = new ArrayList<>(Context.getProviderService().getAllProviders(false));
