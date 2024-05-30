@@ -9,7 +9,8 @@ on:
       - frontend/**
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: openmrs-frontend-qa
+  IMAGE_NAME: openmrs-frontend
+  IMAGE_VERSION: qa
   IMAGE_TAG: latest
   CONTEXT: ./frontend
 jobs:
@@ -38,8 +39,8 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.IMAGE_TAG }}
-            type=sha
+            type=raw,value=${{ env.IMAGE_VERSION }}-${{ env.IMAGE_TAG }}
+            type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
       - name: Build and push Frontend Docker image
         uses: docker/build-push-action@v5

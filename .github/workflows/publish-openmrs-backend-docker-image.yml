@@ -9,7 +9,8 @@ on:
       - backend/**
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: openmrs-backend-2.5.13
+  IMAGE_NAME: openmrs-backend
+  IMAGE_VERSION: 2.5.13
   IMAGE_TAG: latest
   CONTEXT: ./backend
 jobs:
@@ -38,8 +39,8 @@ jobs:
           images: |
             ${{ env.REGISTRY }}/${{ github.repository }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=${{ env.IMAGE_TAG }}
-            type=sha
+            type=raw,value=${{ env.IMAGE_VERSION }}-${{ env.IMAGE_TAG }}
+            type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
       - name: Build and push Backend Docker image
         uses: docker/build-push-action@v5
