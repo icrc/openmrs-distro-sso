@@ -28,7 +28,7 @@ To login you can use the username (before @). For instance to log as `doctor.man
 
 # How to use images:
 A default docker-compose file is available here:
-https://github.com/icrc/openmrs-android-fhir/docker-compose.yml
+[https://github.com/icrc/openmrs-android-fhir/docker-compose.yml](https://github.com/icrc/openmrs-android-fhir/blob/main/docker-compose.yml)
 
 A `.env` is always required to define passwords and sso admin username.
 
