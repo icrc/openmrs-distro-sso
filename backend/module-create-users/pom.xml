@@ -19,7 +19,7 @@
     <idgen.version>4.4.0</idgen.version>
     <appointments.version>2.0.0-20231101.130425-8</appointments.version>
     <openmrsPlatformVersion>1.11.6</openmrsPlatformVersion>
-    <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
+    <datafilter.version>2.3.0-SNAPSHOT</datafilter.version>
     <patientflags.version>3.0.7</patientflags.version>
     <referencedemodata.version>2.4.0</referencedemodata.version>
   </properties>
