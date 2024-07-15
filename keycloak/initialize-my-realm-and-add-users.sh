@@ -12,7 +12,7 @@ function wait_for_keycloak() {
       exit 1
     else
       sh /opt/keycloak/bin/kcadm.sh config credentials \
-          --server http://localhost:8080  \
+          --server http://localhost:8081  \
           --realm master --user "${KEYCLOAK_ADMIN}" --password "${KEYCLOAK_ADMIN_PASSWORD}"
         if [[ $? -eq 0 ]]; then
           success="yes"
