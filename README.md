@@ -20,7 +20,7 @@ This distribution is a customized version of https://github.com/openmrs/openmrs-
 1. Copy the file `.env.default` to `.env`
 2. Edit .env and provide default username, password
 3. Start dockers with: `docker compose up -d --build`
-4. Go to http://localhost
+4. Go to http://localhost:8080
 5. You should be redirected to Keycloak.
 6. Sign in using a user selected from the provided list [keycloak/users.csv](./keycloak/users.csv) and the password defined in `.env` 
 

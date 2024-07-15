@@ -6,7 +6,7 @@ services:
       - frontend
       - backend
     ports:
-      - "80:80"
+      - "8080:80"
 
   frontend:
 #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-frontend-qa:latest
@@ -78,7 +78,7 @@ services:
     build:
       context: keycloak
     ports:
-      - "8080:8080"
+      - "8081:8081"
     environment:
       KEYCLOAK_ADMIN: ${KC_ADMIN_USER}
       KEYCLOAK_ADMIN_PASSWORD: ${KC_ADMIN_PASSWORD}
@@ -86,8 +86,9 @@ services:
       USERS_DEFAULT_PASSWORD: ${USERS_DEFAULT_PASSWORD}
       KC_HOSTNAME_STRICT: false
       KC_HTTP_ENABLED: true
-#      KC_HOSTNAME: localhost
-      KC_HOSTNAME: 10.0.2.2
+      KC_HTTP_PORT: 8081
+      KC_HOSTNAME: localhost
+#      KC_HOSTNAME: 10.0.2.2
     command: ["start-dev"]
 
 volumes:

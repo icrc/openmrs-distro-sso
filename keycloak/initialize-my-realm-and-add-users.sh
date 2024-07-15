@@ -34,8 +34,8 @@ REALM=${REALM:-main}
 ANDROID_SDK_CLIENT_ID=${ANDROID_SDK_CLIENT_ID:-openmrs-fhir}
 ANDROID_SDK_REDIRECT_URIS=${ANDROID_SDK_REDIRECT_URIS:-org.openmrs.android.fhir:/oauth2redirect}
 OMRS_CLIENT_ID=${OMRS_CLIENT_ID:-openmrs}
-OMRS_REDIRECT_URIS=${OMRS_REDIRECT_URIS:-http://localhost/*}
-OMRS_FRONTCHANNEL_LOGOUT_URI=${OMRS_FRONTCHANNEL_LOGOUT_URI:-http://localhost/openmrs/ms/logout}
+OMRS_REDIRECT_URIS=${OMRS_REDIRECT_URIS:-http://localhost:8080/*}
+OMRS_FRONTCHANNEL_LOGOUT_URI=${OMRS_FRONTCHANNEL_LOGOUT_URI:-http://localhost:8080/openmrs/ms/logout}
 
 sh /opt/keycloak/bin/kcadm.sh create realms -s realm="${REALM}" -s enabled=true   -s sslRequired=none
 echo "INFO: Created REALM ${REALM}"
