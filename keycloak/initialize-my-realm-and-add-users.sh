@@ -12,7 +12,7 @@ function wait_for_keycloak() {
       exit 1
     else
       sh /opt/keycloak/bin/kcadm.sh config credentials \
-          --server http://localhost:8081  \
+          --server http://localhost:${KC_HTTP_PORT}  \
           --realm master --user "${KEYCLOAK_ADMIN}" --password "${KEYCLOAK_ADMIN_PASSWORD}"
         if [[ $? -eq 0 ]]; then
           success="yes"
@@ -31,6 +31,7 @@ echo "Wait for Keycloak"
 wait_for_keycloak
 
 REALM=${REALM:-main}
+KC_HTTP_PORT=${KC_HTTP_PORT:-8080}
 ANDROID_SDK_CLIENT_ID=${ANDROID_SDK_CLIENT_ID:-openmrs-fhir}
 ANDROID_SDK_REDIRECT_URIS=${ANDROID_SDK_REDIRECT_URIS:-org.openmrs.android.fhir:/oauth2redirect}
 OMRS_CLIENT_ID=${OMRS_CLIENT_ID:-openmrs}

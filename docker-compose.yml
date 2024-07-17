@@ -1,12 +1,14 @@
 services:
   gateway:
-    image: openmrs/openmrs-reference-application-3-gateway:${TAG:-qa}
+    #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-gateway-qa:latest
+    build:
+      context: gateway
     restart: "unless-stopped"
     depends_on:
       - frontend
       - backend
     ports:
-      - "8080:80"
+      - "8080:8080"
 
   frontend:
 #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-frontend-qa:latest
@@ -43,8 +45,8 @@ services:
       OMRS_CONFIG_CONNECTION_USERNAME: ${OMRS_DB_USER:-openmrs}
       OMRS_CONFIG_CONNECTION_PASSWORD: ${OMRS_DB_PASSWORD}
       OMRS_OAUTH_CLIENT_SECRET: ${OMRS_OAUTH_CLIENT_SECRET}
-      OMRS_OAUTH_USER_AUTHORIZATION_URI: ${OMRS_OAUTH_USER_AUTHORIZATION_URI}
-      OMRS_OAUTH_USER_LOGOUT_URI: ${OMRS_OAUTH_USER_LOGOUT_URI:-http://localhost:8080/realms/main/protocol/openid-connect/logout}
+      OMRS_OAUTH_USER_AUTHORIZATION_URI: ${OMRS_OAUTH_USER_AUTHORIZATION_URI:-http://localhost:8081/realms/main/protocol/openid-connect/auth}
+      OMRS_OAUTH_USER_LOGOUT_URI: ${OMRS_OAUTH_USER_LOGOUT_URI:-http://localhost:8081/realms/main/protocol/openid-connect/logout}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/openmrs"]
       timeout: 5s
