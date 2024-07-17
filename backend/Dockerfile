@@ -39,5 +39,6 @@ COPY server.xml /usr/local/tomcat/conf/server.xml
 COPY log4j2.xml /openmrs/distribution/
 
 COPY --chmod=0755 ./startup-oauth2.sh /openmrs/
+COPY --chmod=0755 ./startup.sh /openmrs/
 CMD ["/openmrs/startup-oauth2.sh"]
 
