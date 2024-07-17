@@ -1,4 +1,4 @@
-name: Publish OpenMRS Frontend docker image
+name: Publish OpenMRS Gateway docker image
 
 on:
   workflow_dispatch:

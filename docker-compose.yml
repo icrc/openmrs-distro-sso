@@ -1,6 +1,6 @@
 services:
   gateway:
-    #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-gateway-qa:latest
+        #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-gateway-qa:latest
     build:
       context: gateway
     restart: "unless-stopped"
