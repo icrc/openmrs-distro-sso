@@ -33,7 +33,7 @@ wait_for_keycloak
 REALM=${REALM:-main}
 KC_HTTP_PORT=${KC_HTTP_PORT:-8080}
 ANDROID_SDK_CLIENT_ID=${ANDROID_SDK_CLIENT_ID:-openmrs-fhir}
-ANDROID_SDK_REDIRECT_URIS=${ANDROID_SDK_REDIRECT_URIS:-org.openmrs.android.fhir:/oauth2redirect}
+ANDROID_SDK_REDIRECT_URIS=${ANDROID_SDK_REDIRECT_URIS:-org.openmrs.android.fhir.app:/oauth2redirect}
 OMRS_CLIENT_ID=${OMRS_CLIENT_ID:-openmrs}
 OMRS_REDIRECT_URIS=${OMRS_REDIRECT_URIS:-http://localhost:8080/*}
 OMRS_FRONTCHANNEL_LOGOUT_URI=${OMRS_FRONTCHANNEL_LOGOUT_URI:-http://localhost:8080/openmrs/ms/logout}
