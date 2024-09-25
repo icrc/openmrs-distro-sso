@@ -23,7 +23,7 @@
 
     <!--    ICRC customization: we are using 2.5 version-->
     <openmrs.version>2.5.13-SNAPSHOT</openmrs.version>
-
+    <initializer.version>2.8.0-SNAPSHOT<initializer.version>
     <datafilter.version>2.2.0-SNAPSHOT</datafilter.version>
     <oauth2login.version>1.4.0</oauth2login.version>
     <create-users.version>1.0.0-SNAPSHOT</create-users.version>
@@ -60,6 +60,12 @@
       <groupId>org.openmrs.module</groupId>
       <artifactId>oauth2login-omod</artifactId>
       <version>${oauth2login.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.openmrs.module</groupId>
+      <artifactId>initializer-omod</artifactId>
+      <version>${initializer.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
