@@ -10,7 +10,7 @@ COPY pom.xml ./
 COPY distro.properties ./
 COPY module-create-users ./module-create-users
 # Build the distro, but only deploy from the amd64 build
-RUN env |grep GITHUB
+RUN env
 RUN --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml \
     cat /usr/share/maven/ref/settings-docker.xml
 # Build the distro, but only deploy from the amd64 build
