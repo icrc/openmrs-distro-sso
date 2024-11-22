@@ -58,11 +58,11 @@ jobs:
         run: cat ~/.m2/settings.xml
 
       - name: Build and push Backend Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ env.CONTEXT }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-#          secret-files: |
-#            "m2settings=~/.m2/settings.xml"
+          secret-files: |
+            "m2settings=~/.m2/settings.xml"
