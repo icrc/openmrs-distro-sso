@@ -54,6 +54,9 @@ jobs:
             type=raw,value=${{ env.IMAGE_VERSION }}-${{ env.IMAGE_TAG }}
             type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
+      - name: Display settings
+        run: cat ~/.m2/settings.xml
+
       - name: Build and push Backend Docker image
         uses: docker/build-push-action@v5
         with:
