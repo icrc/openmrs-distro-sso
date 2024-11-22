@@ -9,11 +9,7 @@ RUN mkdir -p /openmrs/distribution/openmrs_core/
 COPY pom.xml ./
 COPY distro.properties ./
 COPY module-create-users ./module-create-users
-# Build the distro, but only deploy from the amd64 build
-RUN env
-RUN --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml \
-    cat /usr/share/maven/ref/settings-docker.xml
-# Build the distro, but only deploy from the amd64 build
+
 RUN --mount=type=cache,target=/usr/share/maven/ref/repository --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml \
     mvn -s /usr/share/maven/ref/settings-docker.xml \
     -Dmaven.repo.local=/usr/share/maven/ref/repository \

@@ -49,9 +49,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secret-envs: |
-            GITHUB_TOKEN=${env.GITHUB_TOKEN}
-            GITHUB_ACTOR=${env.GITHUB_ACTOR}
           secrets: |
             "m2settings=<settings>
               <servers>
