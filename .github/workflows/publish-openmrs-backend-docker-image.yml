@@ -37,7 +37,11 @@ jobs:
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: 11
+          overwrite-settings: true
           server-id: openmrs-module-fhir2extension # Value of the distributionManagement/repository/id field of the pom.xml
+
+      - name: Display settings
+        run:  cat ~/.m2/settings.xml
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
