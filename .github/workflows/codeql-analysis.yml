@@ -46,6 +46,7 @@ jobs:
           java-version: '11'
           cache: 'maven'
           cache-dependency-path: 'backend/pom.xml' # optional
+          server-id: 'openmrs-module-fhir2extension'
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
