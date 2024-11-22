@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 ### Dev Stage
-FROM maven:3.8-amazoncorretto-8 AS dev
+FROM maven:3.8-amazoncorretto-11 AS dev
 WORKDIR /openmrs_distro
 RUN mkdir -p /openmrs/distribution/openmrs_core/
 
@@ -11,7 +11,10 @@ COPY distro.properties ./
 COPY module-create-users ./module-create-users
 
 # Build the distro, but only deploy from the amd64 build
-RUN --mount=type=cache,target=/root/.m2 mvn clean install
+RUN --mount=type=cache,target=/usr/share/maven/ref/repository --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml \
+    mvn -s /usr/share/maven/ref/settings-docker.xml \
+    -Dmaven.repo.local=/usr/share/maven/ref/repository \
+    clean install
 
 RUN cp /openmrs_distro/target/sdk-distro/web/openmrs.war /openmrs/distribution/openmrs_core/
 
