@@ -30,6 +30,8 @@ services:
 #    image: ghcr.io/icrc/openmrs-distro-sso/openmrs-backend-2.5.13:latest
     build:
       context: backend
+      secrets:
+        - m2settings
     ports:
       - "5005:5005"
     restart: "unless-stopped"
@@ -92,6 +94,10 @@ services:
       KC_HOSTNAME: localhost
 #      KC_HOSTNAME: 10.0.2.2
     command: ["start-dev"]
+
+secrets:
+  m2settings:
+    file: $HOME/.m2/settings.xml
 
 volumes:
   openmrs-data: ~
