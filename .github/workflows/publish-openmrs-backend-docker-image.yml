@@ -61,5 +61,5 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secret-files: |
-            "m2settings=~/.m2/settings.xml"  
+#          secret-files: |
+#            "m2settings=~/.m2/settings.xml"
