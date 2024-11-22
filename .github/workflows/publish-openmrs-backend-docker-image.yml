@@ -23,6 +23,9 @@ jobs:
       packages: write
 
     steps:
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - uses: actions/checkout@v4
 
       - name: Log in to the Container registry
@@ -31,13 +34,6 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up Java 11
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: 11
-          server-id: openmrs-module-fhir2extension # Value of the distributionManagement/repository/id field of the pom.xml
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -50,11 +46,20 @@ jobs:
             type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
       - name: Build and push Backend Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ${{ env.CONTEXT }}
           push: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secret-files: |
-            "m2settings=~/.m2/settings.xml"  
+          secrets: |
+            "m2settings=<settings>
+              <servers>
+                <server>
+                  <id>openmrs-module-fhir2extension</id>
+                  <username>${{ github.actor }}</username>
+                  <password>${{ secrets.GITHUB_TOKEN }}</password>
+              </server>
+            </servers></settings>"
