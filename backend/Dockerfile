@@ -15,12 +15,11 @@ RUN --mount=type=cache,target=/usr/share/maven/ref/repository --mount=type=secre
     -Dmaven.repo.local=/usr/share/maven/ref/repository \
     clean install
 
-RUN cp /openmrs_distro/target/sdk-distro/web/openmrs.war /openmrs/distribution/openmrs_core/
-
-RUN cp ./target/sdk-distro/web/openmrs-distro.properties /openmrs/distribution/
-RUN cp -R ./target/sdk-distro/web/modules /openmrs/distribution/openmrs_modules
-RUN cp -R ./target/sdk-distro/web/owa /openmrs/distribution/openmrs_owas
-RUN cp -R ./target/openmrs_config /openmrs/distribution/openmrs_config
+RUN cp /openmrs_distro/target/sdk-distro/web/openmrs.war /openmrs/distribution/openmrs_core/ \
+    && cp ./target/sdk-distro/web/openmrs-distro.properties /openmrs/distribution/ \
+    &&  cp -R ./target/sdk-distro/web/modules /openmrs/distribution/openmrs_modules \
+    &&  cp -R ./target/sdk-distro/web/owa /openmrs/distribution/openmrs_owas \
+    &&  cp -R ./target/openmrs_config /openmrs/distribution/openmrs_config
 
 
 ### Run Stage
