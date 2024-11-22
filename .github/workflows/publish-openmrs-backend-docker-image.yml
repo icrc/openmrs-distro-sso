@@ -39,10 +39,8 @@ jobs:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: 11
           overwrite-settings: true
-          server-id: openmrs-module-fhir2extension # Value of the distributionManagement/repository/id field of the pom.xml
-
-      - name: Display settings
-        run:  cat ~/.m2/settings.xml
+          server-id: openmrs-module-fhir2extension
+          settings-path:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
@@ -54,7 +52,7 @@ jobs:
             type=raw,value=${{ env.IMAGE_VERSION }}-${{ env.IMAGE_TAG }}
             type=sha,prefix=${{ env.IMAGE_VERSION }}-
 
-      - name: Display settings
+      - name: Display M2 settings
         run: cat ~/.m2/settings.xml
 
       - name: Build and push Backend Docker image
@@ -65,6 +63,14 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
-            "GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}"
-          secret-files: |
-            "m2settings=~/.m2/settings.xml"
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+            "m2settings=<settings>
+              <servers>
+                <server>
+                  <id>openmrs-module-fhir2extension</id>
+                  <username>${env.GITHUB_ACTOR}</username>
+                  <password>${env.GITHUB_TOKEN}</password>
+              </server>
+            </servers></settings>"
+#          secret-files: |
+#            "m2settings=~/.m2/settings.xml"
