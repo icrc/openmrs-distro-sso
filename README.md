@@ -26,6 +26,28 @@ This distribution is a customized version of https://github.com/openmrs/openmrs-
 
 To login you can use the username (before @). For instance to log as `doctor.many@localhost.local`, you can use `doctor.many` in sso login page.
 
+
+## Maven configuration and GitHub token
+
+https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages
+
+To access to packages deployed on GitHub (https://github.com/icrc/openmrs-module-fhir2extension), you must have a GitHub account and provide a PAT.
+Any GitHub account is working,  You should configure your `settings.xml`file by adding:
+
+```xml
+<server>
+    <id>openmrs-module-fhir2extension</id>
+    <username>#{GITHUB_USERNAME}#</username>
+    <password>#{GITHUB_TOKEN}#</password>
+</server>
+```
+
+GITHUB_TOKEN is a `personal access token (classic) with at least read:packages scope to install packages associated with other private repositories (which GITHUB_TOKEN can't access).`
+
+To access to GitHub repositories a token is required. The file `settings-template.xml` can be used as a template to edit
+your file `settings.xml`
+Developers have to edit their file `settings.xml` to add valid token taken from a GitHub account.
+
 # How to use images:
 A default docker-compose file is available here:
 [https://github.com/icrc/openmrs-android-fhir/docker-compose.yml](https://github.com/icrc/openmrs-android-fhir/blob/main/docker-compose.yml)

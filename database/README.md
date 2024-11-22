@@ -18,4 +18,4 @@ It's possible to create another dump by using the scripts in the folder `dump-ex
 
 
 ## Improvements
-it's possible to automate the full process but this operation is not oftenly used so these steps are acceptable.
+it's possible to automate the full process but this operation is not often used so these steps are acceptable.
