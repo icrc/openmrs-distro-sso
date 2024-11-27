@@ -46,6 +46,7 @@ jobs:
           java-version: '11'
           cache: 'maven'
           cache-dependency-path: 'backend/pom.xml' # optional
+          server-id: 'openmrs-module-fhir2extension'
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
@@ -59,6 +60,22 @@ jobs:
           # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
 
+
+
+      - name: create settings.xml
+        run: |
+          cat <<EOF > /home/runner/.m2/settings.xml
+            <settings>
+              <servers>
+                <server>
+                  <id>openmrs-module-fhir2extension</id>
+                  <username>${{ github.actor }}</username>
+                  <password>${{ secrets.GITHUB_TOKEN }}</password>
+              </server>
+            </servers></settings>
+          EOF
+      - name: display settings.xml
+        run: cat /home/runner/.m2/settings.xml
 
       # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
       # If this step fails, then you should remove it and run the build manually (see below)
