@@ -65,7 +65,7 @@ jobs:
       - name: create settings.xml
         run: |
           cat <<EOF > /home/runner/.m2/settings.xml
-            m2settings=<settings>
+            <settings>
               <servers>
                 <server>
                   <id>openmrs-module-fhir2extension</id>
