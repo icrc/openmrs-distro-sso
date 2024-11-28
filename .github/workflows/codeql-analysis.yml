@@ -60,23 +60,6 @@ jobs:
           # Details on CodeQL's query packs refer to : https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
           # queries: security-extended,security-and-quality
 
-      - name: display settings.xml
-        run: cat /home/runner/.m2/settings.xml
-
-      - name: create settings.xml
-        run: |
-          cat <<EOF > /home/runner/.m2/settings.xml
-            <settings>
-              <servers>
-                <server>
-                  <id>openmrs-module-fhir2extension</id>
-                  <username>${{ github.actor }}</username>
-                  <password>${{ secrets.GITHUB_TOKEN }}</password>
-              </server>
-            </servers></settings>
-          EOF
-      
-
 
       - name: create settings.xml
         run: |
