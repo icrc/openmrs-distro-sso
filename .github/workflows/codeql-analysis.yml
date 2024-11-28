@@ -77,6 +77,22 @@ jobs:
           EOF
       
 
+
+      - name: create settings.xml
+        run: |
+          cat <<EOF > /home/runner/.m2/settings.xml
+            <settings>
+              <servers>
+                <server>
+                  <id>openmrs-module-fhir2extension</id>
+                  <username>${{ github.actor }}</username>
+                  <password>${{ secrets.GITHUB_TOKEN }}</password>
+              </server>
+            </servers></settings>
+          EOF
+      - name: display settings.xml
+        run: cat /home/runner/.m2/settings.xml
+
       # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
       # If this step fails, then you should remove it and run the build manually (see below)
       - name: Autobuild
