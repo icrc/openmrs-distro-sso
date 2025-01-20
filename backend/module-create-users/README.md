@@ -1,4 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2025 ICRC
 
+SPDX-License-Identifier: BSD-3-Clause
+-->
 
 # Users configured accordingly to Datafilter filter (location based filter)
 
