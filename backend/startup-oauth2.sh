@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 #See the code https://github.com/openmrs/openmrs-core/blob/2.5.12/startup-init.sh
 OMRS_HOME=${OMRS_HOME:-'/openmrs'}
 cat > "$OMRS_HOME"/data/oauth2.properties << EOF

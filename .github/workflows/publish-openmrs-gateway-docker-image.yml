@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 name: Publish OpenMRS Gateway docker image
 
 on:

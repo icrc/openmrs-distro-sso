@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 FROM quay.io/keycloak/keycloak:24.0.3
 
 COPY custom-kc.sh /opt/keycloak/bin/custom-kc.sh

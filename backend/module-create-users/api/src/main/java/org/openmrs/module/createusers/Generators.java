@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2025 ICRC
+//
+// SPDX-License-Identifier: BSD-3-Clause
+
 package org.openmrs.module.createusers;
 
 import org.openmrs.module.referencedemodata.DemoDataConceptCache;

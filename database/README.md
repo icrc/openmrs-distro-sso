@@ -1,3 +1,8 @@
+<!--
+SPDX-FileCopyrightText: 2025 ICRC
+
+SPDX-License-Identifier: BSD-3-Clause
+-->
 
 # Why
 Used to build a MariaDB Docker Image with an OpenMRS dump.
