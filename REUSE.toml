@@ -1,7 +1,16 @@
 version = 1
-dfdfdf
 
 [[annotations]]
-path = [".gitignore", "backend/openmrs_custom_config/**/*.csv", "database/dump/*.gz"]
+path = [".gitignore",".dockerignore",".env", ".gitattributes"]
+SPDX-FileCopyrightText = "2025 ICRC"
+SPDX-License-Identifier = "BSD-3-Clause"
+
+[[annotations]]
+path = ["backend/openmrs_custom_config/**/*.csv", "keycloak/*.csv"]
+SPDX-FileCopyrightText = "2025 ICRC"
+SPDX-License-Identifier = "BSD-3-Clause"
+
+[[annotations]]
+path = ["database/dump-extract/.env.default","database/dump/*.gz","frontend/oauth2.json","backend/distro.properties","gateway/default.conf.template"]
 SPDX-FileCopyrightText = "2025 ICRC"
 SPDX-License-Identifier = "BSD-3-Clause"
