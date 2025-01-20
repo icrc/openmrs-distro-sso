@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 VERSION=$1
 if [ -z "${VERSION}" ]; then
   echo "Please give the version in first argument"

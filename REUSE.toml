@@ -1,0 +1,6 @@
+version = 1
+
+[[annotations]]
+path = [".gitignore", "backend/openmrs_custom_config/**/*.csv", "database/dump/*.gz"]
+SPDX-FileCopyrightText = "2025 ICRC"
+SPDX-License-Identifier = "BSD-3-Clause"

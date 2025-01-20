@@ -1,4 +1,9 @@
 #!/bin/bash
+
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 # Wrapper script as docker entrypoint to run initialize-my-realm.sh in parallel to actual kc.sh (the official entrypoint).
 
 set -e -u -o pipefail

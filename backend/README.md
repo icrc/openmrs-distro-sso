@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 ICRC
+
+SPDX-License-Identifier: BSD-3-Clause
+-->
+
 ICRC Customization of https://github.com/openmrs/openmrs-distro-referenceapplication to:
 - integrate Oauth2 Module: [openmrs-module-oauth2login](https://github.com/openmrs/openmrs-module-oauth2login)
 - integrate DataFilter Module: [openmrs-module-datafilter](https://github.com/openmrs/openmrs-module-datafilter)

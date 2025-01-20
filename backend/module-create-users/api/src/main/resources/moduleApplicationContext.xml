@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+SPDX-FileCopyrightText: 2025 ICRC
+
+SPDX-License-Identifier: BSD-3-Clause
+-->
+
 <!-- Beans to add to the current Application context definition -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 # simple Dockerfile to include a openmrs dump in default MariaDb Setup.
 ARG MARIADB_VERSION=10.11.7
 FROM mariadb:${MARIADB_VERSION}

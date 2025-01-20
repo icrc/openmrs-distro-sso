@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 ICRC
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 name: Publish MariaDB For OpenMRS 2.6.4 docker image
 
 on:
