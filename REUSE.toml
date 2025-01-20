@@ -1,7 +1,7 @@
 version = 1
 
 [[annotations]]
-path = [".gitignore",".dockerignore",".env", ".gitattributes"]
+path = [".gitignore",".dockerignore",".env", ".gitattributes","REUSE.toml"]
 SPDX-FileCopyrightText = "2025 ICRC"
 SPDX-License-Identifier = "BSD-3-Clause"
 
