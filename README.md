@@ -4,7 +4,7 @@ SPDX-FileCopyrightText: 2025 ICRC
 SPDX-License-Identifier: BSD-3-Clause
 -->
 
-[![REUSE status](https://api.reuse.software/badge/github.com/fsfe/reuse-action)](https://api.reuse.software/info/github.com/fsfe/reuse-action)
+[![REUSE status](https://api.reuse.software/badge/github.com/icrc/openmrs-distro-sso)](https://api.reuse.software/info/github.com/icrc/openmrs-distro-sso)
 
 # Why
 The goal of this distribution is to enable the effortless initiation of an OpenMRS Distro with Single Sign-On (SSO) and DataFilter activated through a single command line (utilizing Docker).
