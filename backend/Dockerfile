@@ -12,6 +12,7 @@ RUN mkdir -p /openmrs/distribution/openmrs_core/
 # Copy build files
 COPY pom.xml ./
 COPY distro.properties ./
+COPY openmrs-servlet.xml ./
 COPY module-create-users ./module-create-users
 
 RUN --mount=type=cache,target=/usr/share/maven/ref/repository --mount=type=secret,id=m2settings,target=/usr/share/maven/ref/settings-docker.xml \
