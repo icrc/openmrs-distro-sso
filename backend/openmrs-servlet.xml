@@ -11,6 +11,13 @@
 
 -->
 
+<!--
+Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
+SPDX-FileCopyrightText: OpenMRS
+
+SPDX-License-Identifier: MPL-2.0
+-->
+
 <!-- Application context definition for Spring for the OpenMRS web layer.
 -->
 <!-- See /metadata/api/spring/applicationContext-service.xml for layer agnostic spring setup
