@@ -65,7 +65,6 @@ jobs:
           # queries: security-extended,security-and-quality
 
 
-
       - name: create settings.xml
         run: |
           cat <<EOF > /home/runner/.m2/settings.xml
